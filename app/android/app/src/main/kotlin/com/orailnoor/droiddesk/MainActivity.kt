@@ -693,7 +693,15 @@ class MainActivity : FlutterActivity() {
                     }
                 }
 
-                "listDesktopSnapshots" -> result.success(desktopIntegration.listSnapshots())
+                "listDesktopSnapshots" -> thread(name = "list-desktop-snapshots") {
+                    try {
+                        val snapshots = desktopIntegration.listSnapshots()
+                        runOnUiThread { result.success(snapshots) }
+                    } catch (error: Exception) {
+                        Log.e(TAG, "Could not list desktop snapshots", error)
+                        runOnUiThread { result.error("snapshot_list", error.message, null) }
+                    }
+                }
                 "createDesktopSnapshot" -> thread(name = "create-desktop-snapshot") {
                     runCatching { desktopIntegration.createSnapshot(chrootRuntime.hasRoot()) }
                         .onSuccess { value -> runOnUiThread { result.success(value) } }
@@ -731,7 +739,12 @@ class MainActivity : FlutterActivity() {
                 }
                 "deleteDesktopSnapshot" -> {
                     val name = call.argument<String>("name") ?: ""
-                    result.success(runCatching { desktopIntegration.deleteSnapshot(name) }.getOrDefault(false))
+                    thread(name = "delete-desktop-snapshot") {
+                        val deleted = runCatching { desktopIntegration.deleteSnapshot(name) }
+                            .onFailure { Log.e(TAG, "Could not delete desktop snapshot", it) }
+                            .getOrDefault(false)
+                        runOnUiThread { result.success(deleted) }
+                    }
                 }
                 "openAndroidControl" -> {
                     AndroidAppBridge.launchSystemAction(this, call.argument<String>("action") ?: "settings")
