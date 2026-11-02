@@ -101,17 +101,23 @@ class WelcomeScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const SetupProgressScreen(),
-                      ),
-                    ),
-                    child: const Row(
+                    onPressed: state.isSetupComplete
+                        ? () => Navigator.of(context).maybePop()
+                        : () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const SetupProgressScreen(),
+                              ),
+                            ),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Set Up Desktop Environment'),
-                        SizedBox(width: 8),
-                        Icon(Icons.arrow_forward_rounded, size: 19),
+                        Text(
+                          state.isSetupComplete
+                              ? 'Return to MT-desk'
+                              : 'Set Up Desktop Environment',
+                        ),
+                        const SizedBox(width: 8),
+                        const Icon(Icons.arrow_forward_rounded, size: 19),
                       ],
                     ),
                   ),
