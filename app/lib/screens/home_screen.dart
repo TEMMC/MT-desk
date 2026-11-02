@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('DroidDesk', style: DroidTheme.headingMd),
+                          Text('MT-desk', style: DroidTheme.headingMd),
                           Text(
                             state.isRunning
                                 ? 'Desktop Environment is running'
@@ -702,7 +702,7 @@ class HomeScreen extends StatelessWidget {
       builder: (dialogContext) => AlertDialog(
         title: const Text('Change default launcher?'),
         content: const Text(
-          'DroidDesk will stop opening automatically as your Home app. Android will ask you to choose another launcher.',
+          'MT-desk will stop opening automatically as your Home app. Android will ask you to choose another launcher.',
         ),
         actions: [
           TextButton(
