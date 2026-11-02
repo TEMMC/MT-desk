@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
-import 'package:droiddesk/state/app_state.dart';
-import 'package:droiddesk/screens/home_screen.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
+import 'package:mt_desk/state/app_state.dart';
+import 'package:mt_desk/screens/home_screen.dart';
 
 /// Setup progress screen — step 3 of setup wizard.
 /// Shows download, extraction, and configuration progress.
