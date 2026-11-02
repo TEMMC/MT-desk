@@ -120,7 +120,7 @@ class ChrootRuntime(private val context: Context) {
             writeText(
                 """
                 #!/bin/bash
-                # DroidDesk portable graphics environment
+                # MT-desk portable graphics environment
                 export DISPLAY=:0
                 export XDG_RUNTIME_DIR=/tmp/runtime-root
                 export XDG_SESSION_TYPE=x11
@@ -426,7 +426,7 @@ class ChrootRuntime(private val context: Context) {
             # for this rooted Ubuntu filesystem.
             export LD_PRELOAD=/usr/local/lib/libdroiddesk-close-range.so
 
-            # Source DroidDesk environment
+            # Source MT-desk environment
             . /etc/profile.d/droiddesk-ha.sh 2>/dev/null || true
 
             # Make sure X11 socket dir exists in case bind mount was late
@@ -732,7 +732,7 @@ SESSEOF
     }
 
     /**
-     * Unmount all DroidDesk-related mounts.
+     * Unmount all MT-desk-related mounts.
      */
     fun unmountAll() {
         if (!hasRoot()) return
