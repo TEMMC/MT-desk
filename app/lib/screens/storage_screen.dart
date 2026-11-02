@@ -1,6 +1,6 @@
-import 'package:droiddesk/services/platform_bridge.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
-import 'package:droiddesk/widgets/droid_ui.dart';
+import 'package:mt_desk/services/platform_bridge.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
+import 'package:mt_desk/widgets/droid_ui.dart';
 import 'package:flutter/material.dart';
 
 /// How much space Linux uses on the phone, with a one-tap package cache clean-up.
