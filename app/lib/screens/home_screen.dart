@@ -11,6 +11,7 @@ import 'package:mt_desk/services/platform_bridge.dart';
 import 'package:mt_desk/screens/setup/de_install_screen.dart';
 import 'package:mt_desk/screens/apps/app_catalog_screen.dart';
 import 'package:mt_desk/screens/desktop_tools_screen.dart';
+import 'package:mt_desk/screens/welcome_screen.dart';
 
 /// Home dashboard — shown after setup is complete.
 /// Central hub for launching the desktop, terminal, and managing the environment.
@@ -540,6 +541,27 @@ class HomeScreen extends StatelessWidget {
                           selected: state.themeMode == ThemeMode.system,
                           onTap: () => state.setThemeMode(ThemeMode.system),
                         ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 26),
+
+                  _SettingsSectionLabel('App'),
+                  _SettingsGroup(
+                    children: [
+                      _SettingsRow(
+                        icon: Icons.waving_hand_rounded,
+                        color: DroidTheme.primary,
+                        title: 'Startup screen',
+                        subtitle: 'View the MT-desk welcome screen',
+                        onTap: () {
+                          Navigator.pop(sheetContext);
+                          Navigator.of(pageContext).push(
+                            MaterialPageRoute(
+                              builder: (_) => const WelcomeScreen(),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
