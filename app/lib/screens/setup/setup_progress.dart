@@ -263,7 +263,7 @@ class _SetupProgressScreenState extends State<SetupProgressScreen> {
                               borderRadius: BorderRadius.circular(14),
                             ),
                           ),
-                          child: const Text('Launch DroidDesk'),
+                          child: const Text('Launch MT-desk'),
                         ),
                       )
                       .animate()
