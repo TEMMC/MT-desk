@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
-import 'package:droiddesk/screens/setup/setup_progress.dart';
-import 'package:droiddesk/state/app_state.dart';
-import 'package:droiddesk/widgets/update_sheet.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
+import 'package:mt_desk/screens/setup/setup_progress.dart';
+import 'package:mt_desk/state/app_state.dart';
+import 'package:mt_desk/widgets/update_sheet.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
