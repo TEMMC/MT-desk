@@ -27,7 +27,7 @@ import android.widget.Toast
 class MainActivity : FlutterActivity() {
 
     companion object {
-        private const val CHANNEL = "com.droiddesk/core"
+        private const val CHANNEL = "com.mtdesk.desktop/core"
         private const val TAG = "MainActivity"
         /** Sent by the "Open" notification action: show the desktop, resuming a running session. */
         const val ACTION_OPEN_DESKTOP = "com.mtdesk.desktop.action.OPEN_DESKTOP"
