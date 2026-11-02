@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import java.io.File
 
-/** Installs DroidDesk's touch-friendly Ubuntu-inspired XFCE defaults once per home. */
+/** Installs MT-desk's touch-friendly Ubuntu-inspired XFCE defaults once per home. */
 object XfceMobileProfile {
     private const val TAG = "XfceMobileProfile"
     private const val PROFILE_MARKER = ".droiddesk-xfce-mobile-v14"
@@ -105,8 +105,8 @@ object XfceMobileProfile {
     private fun installPanelCss(homeDir: File) {
         val cssFile = File(homeDir, ".config/gtk-3.0/gtk.css")
         cssFile.parentFile?.mkdirs()
-        val startMarker = "/* DroidDesk mobile panel start */"
-        val endMarker = "/* DroidDesk mobile panel end */"
+        val startMarker = "/* MT-desk mobile panel start */"
+        val endMarker = "/* MT-desk mobile panel end */"
         val managedBlock = """
             $startMarker
             .xfce4-panel button {
@@ -134,7 +134,7 @@ object XfceMobileProfile {
             parentFile?.mkdirs()
             writeText(
                 """
-                -- Managed by DroidDesk: dialogs, menus and splash screens keep their own size.
+                -- Managed by MT-desk: dialogs, menus and splash screens keep their own size.
                 if get_window_type() == "WINDOW_TYPE_NORMAL" then
                   -- Fit the window to the screen first so "restore" returns to a size
                   -- that is still usable on a phone, then open it maximized.
@@ -155,7 +155,7 @@ object XfceMobileProfile {
                 """
                 [Desktop Entry]
                 Type=Application
-                Name=DroidDesk window fitting
+                Name=MT-desk window fitting
                 Comment=Maximize new windows on small screens
                 Exec=sh -c 'command -v devilspie2 >/dev/null 2>&1 && exec devilspie2'
                 OnlyShowIn=XFCE;
@@ -228,7 +228,7 @@ object XfceMobileProfile {
                 """
                 <?xml version="1.0"?>
                 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-                <!-- Managed by DroidDesk -->
+                <!-- Managed by MT-desk -->
                 <fontconfig>
                   <alias binding="strong">
                     <family>monospace</family>
