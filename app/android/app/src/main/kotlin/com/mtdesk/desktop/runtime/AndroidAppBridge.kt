@@ -223,10 +223,10 @@ object AndroidAppBridge {
 
         val panelFile = File(homeDir, ".config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml")
         if (!panelFile.isFile) return
-        val idStart = "<!-- DroidDesk Android dock ids start -->"
-        val idEnd = "<!-- DroidDesk Android dock ids end -->"
-        val pluginStart = "<!-- DroidDesk Android dock plugins start -->"
-        val pluginEnd = "<!-- DroidDesk Android dock plugins end -->"
+        val idStart = "<!-- MT-desk Android dock ids start -->"
+        val idEnd = "<!-- MT-desk Android dock ids end -->"
+        val pluginStart = "<!-- MT-desk Android dock plugins start -->"
+        val pluginEnd = "<!-- MT-desk Android dock plugins end -->"
         // xfconfd rewrites this file without our comment markers, so also drop
         // any dock ids/launchers left over from earlier sessions; otherwise
         // every restart appends another (iconless) copy of the dock apps.
