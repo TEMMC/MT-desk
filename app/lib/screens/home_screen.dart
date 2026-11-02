@@ -54,6 +54,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(13),
                         ),
                         child: const Icon(Icons.terminal_rounded, color: DroidTheme.primary, size: 30),
+                      ),
                       const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
