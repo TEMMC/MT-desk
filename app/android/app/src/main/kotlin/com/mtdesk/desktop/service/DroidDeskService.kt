@@ -14,6 +14,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import com.mtdesk.desktop.MainActivity
+import com.mtdesk.desktop.R
 import com.mtdesk.desktop.runtime.AndroidAppBridge
 import com.mtdesk.desktop.runtime.ChrootRuntime
 import com.mtdesk.desktop.runtime.LinuxRuntime
