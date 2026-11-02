@@ -31,6 +31,7 @@ class MainActivity : FlutterActivity() {
         private const val TAG = "MainActivity"
         /** Sent by the "Open" notification action: show the desktop, resuming a running session. */
         const val ACTION_OPEN_DESKTOP = "com.mtdesk.desktop.action.OPEN_DESKTOP"
+        const val ACTION_OPEN_SETTINGS = "com.mtdesk.desktop.action.OPEN_SETTINGS"
         private val packageOperationRunning = java.util.concurrent.atomic.AtomicBoolean(false)
     }
 
@@ -153,7 +154,16 @@ class MainActivity : FlutterActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
-        handleHomeLaunch(intent)
+        if (intent.action == ACTION_OPEN_SETTINGS) {
+            openFlutterSettings()
+        } else {
+            handleHomeLaunch(intent)
+        }
+    }
+
+    private fun openFlutterSettings() {
+        val messenger = flutterEngine?.dartExecutor?.binaryMessenger ?: return
+        MethodChannel(messenger, CHANNEL).invokeMethod("openSettings", null)
     }
 
     private fun handleHomeLaunch(homeIntent: Intent) {
@@ -922,6 +932,11 @@ class MainActivity : FlutterActivity() {
             }
         }
     }
+        if (intent?.action == ACTION_OPEN_SETTINGS) {
+            MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL)
+                .invokeMethod("openSettings", null)
+        }
+
 
     private fun updateStatusBarIcons(isLightMode: Boolean) {
         lightSystemBars = isLightMode
