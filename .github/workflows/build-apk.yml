@@ -5,7 +5,7 @@ on:
   push:
     branches: [main, fix/anr-main-thread-filesystem]
     paths:
-      - ".github/workflows/build-apk.yml"
+      - ".github/workflows/build-apk.yml"\n      - "app/**"
 
 permissions:
   contents: read
@@ -56,17 +56,17 @@ jobs:
       - name: Build release APK with shared signing certificate
         working-directory: app
         env:
-          DROIDDESK_KEYSTORE: ${{ runner.temp }}/mt-os-release.keystore
-          DROIDDESK_KEYSTORE_PASSWORD: ${{ secrets.METMC_SIGNING_STORE_PASSWORD }}
-          DROIDDESK_KEY_ALIAS: ${{ secrets.METMC_SIGNING_KEY_ALIAS }}
-          DROIDDESK_KEY_PASSWORD: ${{ secrets.METMC_SIGNING_KEY_PASSWORD }}
+          MT_DESK_KEYSTORE: ${{ runner.temp }}/mt-os-release.keystore
+          MT_DESK_KEYSTORE_PASSWORD: ${{ secrets.METMC_SIGNING_STORE_PASSWORD }}
+          MT_DESK_KEY_ALIAS: ${{ secrets.METMC_SIGNING_KEY_ALIAS }}
+          MT_DESK_KEY_PASSWORD: ${{ secrets.METMC_SIGNING_KEY_PASSWORD }}
         run: |
           set -euo pipefail
-          if [[ -z "$DROIDDESK_KEYSTORE_PASSWORD" || -z "$DROIDDESK_KEY_ALIAS" || -z "$DROIDDESK_KEY_PASSWORD" ]]; then
+          if [[ -z "$MT_DESK_KEYSTORE_PASSWORD" || -z "$MT_DESK_KEY_ALIAS" || -z "$MT_DESK_KEY_PASSWORD" ]]; then
             echo "::error::Missing one or more MT-OS signing secrets: METMC_SIGNING_STORE_PASSWORD, METMC_SIGNING_KEY_ALIAS, METMC_SIGNING_KEY_PASSWORD."
             exit 1
           fi
-          cp "$HOME/.android/mt-os-release.keystore" "$DROIDDESK_KEYSTORE"
+          cp "$HOME/.android/mt-os-release.keystore" "$MT_DESK_KEYSTORE"
           flutter build apk --release
 
       - name: Verify APK package and signing certificate
@@ -76,7 +76,7 @@ jobs:
           APK="app/build/app/outputs/flutter-apk/app-release.apk"
           test -s "$APK"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose "$APK"
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | grep "package: name='com.orailnoor.droiddesk'"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | grep "package: name='com.mtdesk.desktop'"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$APK"
           sha256sum "$APK" > "$APK.sha256"
 
