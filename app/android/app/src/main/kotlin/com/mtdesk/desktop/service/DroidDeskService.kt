@@ -131,12 +131,22 @@ class DroidDeskService : Service() {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
+        val settingsIntent = PendingIntent.getActivity(
+            this,
+            2,
+            Intent(this, MainActivity::class.java)
+                .setAction(MainActivity.ACTION_OPEN_SETTINGS)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("MT-desk")
             .setContentText(contentText)
             .setSmallIcon(R.drawable.mt_desk_notification)
             .setContentIntent(openIntent)
             .addAction(0, "Open", openIntent)
+            .addAction(0, "Settings", settingsIntent)
             .addAction(0, "Stop", stopIntent)
             .setOngoing(true)
             .setSilent(true)
