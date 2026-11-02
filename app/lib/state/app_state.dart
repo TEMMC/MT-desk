@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:droiddesk/services/platform_bridge.dart';
-import 'package:droiddesk/services/update_service.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
+import 'package:mt_desk/services/platform_bridge.dart';
+import 'package:mt_desk/services/update_service.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
 
 /// Central state management for the entire DroidDesk app.
 class AppState extends ChangeNotifier {
