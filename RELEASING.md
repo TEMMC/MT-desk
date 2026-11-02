@@ -1,6 +1,6 @@
 # Releasing MT-desk
 
-The app checks `https://api.github.com/repos/orailnoor/MT-desk/releases/latest`
+The app checks `https://api.github.com/repos/TEMMC/MT-desk/releases/latest`
 when it opens (at most every 6 hours) and offers the update in-app. A release
 reaches users only if it follows these steps.
 
@@ -11,17 +11,17 @@ in-app update. Create it once and keep it (and its passwords) safe; share it
 privately with other maintainers. Never commit it.
 
 ```bash
-mkdir -p ~/.droiddesk
-keytool -genkeypair -v -keystore ~/.droiddesk/droiddesk-release.jks \
-  -alias droiddesk -keyalg RSA -keysize 4096 -validity 10000
+mkdir -p ~/.mt-desk
+keytool -genkeypair -v -keystore ~/.mt-desk/mt-desk-release.jks \
+  -alias mt-desk -keyalg RSA -keysize 4096 -validity 10000
 ```
 
 Then create `app/android/key.properties` (git-ignored):
 
 ```properties
-storeFile=/Users/<you>/.droiddesk/droiddesk-release.jks
+storeFile=/Users/<you>/.mt-desk/mt-desk-release.jks
 storePassword=<store password>
-keyAlias=droiddesk
+keyAlias=mt-desk
 keyPassword=<key password>
 ```
 
@@ -38,7 +38,7 @@ install from inside the app.
 
 1. Bump `version:` in `app/pubspec.yaml`, both parts: `1.2.0+3` (name + build number).
 2. Build: `cd app && flutter build apk --release`
-3. Create a GitHub release on `orailnoor/MT-desk` with tag `v1.2.0` (must match the
+3. Create a GitHub release on `TEMMC/MT-desk` with tag `v1.2.0` (must match the
    version name) and attach `app/build/app/outputs/flutter-apk/app-release.apk`.
    The first `.apk` asset is what the app downloads.
 4. The release notes are shown in the in-app update sheet; keep them short.
