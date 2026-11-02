@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// A quiet, content-first design system inspired by premium system UI.
 ///
@@ -116,7 +115,7 @@ class DroidTheme {
   static const double space2xl = 48;
 
   // ── Typography ──
-  static TextStyle get headingXl => GoogleFonts.jetBrainsMono(
+  static TextStyle get headingXl => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 34,
     fontWeight: FontWeight.w700,
     color: textPrimary,
@@ -159,12 +158,12 @@ class DroidTheme {
     color: textMuted,
     height: 1.35,
   );
-  static TextStyle get mono => GoogleFonts.jetBrainsMono(
+  static TextStyle get mono => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: textPrimary,
   );
-  static TextStyle get monoSm => GoogleFonts.jetBrainsMono(
+  static TextStyle get monoSm => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 11,
     fontWeight: FontWeight.w400,
     color: textMuted,
