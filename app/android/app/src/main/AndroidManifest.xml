@@ -14,7 +14,7 @@
     <application
         android:label="MT-desk"
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon"
+        android:icon="@drawable/mt_desk_icon"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:largeHeap="true"
