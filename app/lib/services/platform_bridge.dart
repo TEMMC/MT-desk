@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 
 /// Platform channel bridge to communicate with the Kotlin native layer.
 ///
@@ -17,6 +18,16 @@ class DroidDeskPlatform {
   static Function(String text)? onPackageOperationLog;
   static Function(String text)? onTerminalOutput;
   static Function(int downloaded, int total)? onUpdateProgress;
+  static VoidCallback? onOpenSettings;
+  static bool _settingsRequestPending = false;
+
+  static void registerOpenSettingsHandler(VoidCallback handler) {
+    onOpenSettings = handler;
+    if (_settingsRequestPending) {
+      _settingsRequestPending = false;
+      handler();
+    }
+  }
 
   static Future<void> updateStatusBarTheme(bool isLightMode) async {
     try {
@@ -28,6 +39,14 @@ class DroidDeskPlatform {
   static void init() {
     _channel.setMethodCallHandler((call) async {
       switch (call.method) {
+        case 'openSettings':
+          final handler = onOpenSettings;
+          if (handler != null) {
+            handler();
+          } else {
+            _settingsRequestPending = true;
+          }
+          break;
         case 'onDownloadProgress':
           final args = call.arguments as Map;
           onDownloadProgress?.call(
