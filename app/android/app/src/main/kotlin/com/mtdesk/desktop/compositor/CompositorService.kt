@@ -5,7 +5,7 @@ import android.view.Surface
 class CompositorService {
 
     init {
-        System.loadLibrary("droiddesk_compositor")
+        System.loadLibrary("mtdesk_compositor")
     }
 
     /**
