@@ -133,7 +133,7 @@ class DroidDeskService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("MT-desk")
             .setContentText(contentText)
-            .setSmallIcon(android.R.drawable.ic_menu_compass)
+            .setSmallIcon(R.drawable.mt_desk_notification)
             .setContentIntent(openIntent)
             .addAction(0, "Open", openIntent)
             .addAction(0, "Stop", stopIntent)
