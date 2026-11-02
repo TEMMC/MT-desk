@@ -122,37 +122,37 @@ class DroidTheme {
     height: 1.08,
     letterSpacing: -1.1,
   );
-  static TextStyle get headingLg => GoogleFonts.inter(
+  static TextStyle get headingLg => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 26,
     fontWeight: FontWeight.w700,
     color: textPrimary,
     letterSpacing: -0.7,
   );
-  static TextStyle get headingMd => GoogleFonts.inter(
+  static TextStyle get headingMd => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: textPrimary,
     letterSpacing: -0.35,
   );
-  static TextStyle get headingSm => GoogleFonts.inter(
+  static TextStyle get headingSm => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: textPrimary,
     letterSpacing: -0.15,
   );
-  static TextStyle get bodyLg => GoogleFonts.inter(
+  static TextStyle get bodyLg => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 17,
     fontWeight: FontWeight.w400,
     color: textSecondary,
     height: 1.45,
   );
-  static TextStyle get bodyMd => GoogleFonts.inter(
+  static TextStyle get bodyMd => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 15,
     fontWeight: FontWeight.w400,
     color: textSecondary,
     height: 1.45,
   );
-  static TextStyle get bodySm => GoogleFonts.inter(
+  static TextStyle get bodySm => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: textMuted,
@@ -168,7 +168,7 @@ class DroidTheme {
     fontWeight: FontWeight.w400,
     color: textMuted,
   );
-  static TextStyle get label => GoogleFonts.inter(
+  static TextStyle get label => TextStyle(fontFamily: 'JetBrainsMono',
     fontSize: 12,
     fontWeight: FontWeight.w600,
     color: textMuted,
@@ -222,7 +222,7 @@ class DroidTheme {
             : SystemUiOverlayStyle.dark.copyWith(
                 statusBarColor: Colors.transparent,
               ),
-        titleTextStyle: GoogleFonts.inter(
+        titleTextStyle: TextStyle(fontFamily: 'JetBrainsMono',
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: txtPrimary,
@@ -267,7 +267,7 @@ class DroidTheme {
             borderRadius: BorderRadius.circular(radiusMd),
           ),
           textStyle:
-              GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
+              TextStyle(fontFamily: 'JetBrainsMono',fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -280,12 +280,12 @@ class DroidTheme {
             borderRadius: BorderRadius.circular(radiusMd),
           ),
           textStyle:
-              GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
+              TextStyle(fontFamily: 'JetBrainsMono',fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
       snackBarTheme: SnackBarThemeData(
         backgroundColor: surfLight,
-        contentTextStyle: GoogleFonts.inter(
+        contentTextStyle: TextStyle(fontFamily: 'JetBrainsMono',
           fontSize: 15,
           color: txtPrimary,
           height: 1.45,
