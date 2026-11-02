@@ -154,7 +154,7 @@ object AppUpdater {
         val archive = pm.getPackageArchiveInfo(apk.absolutePath, flags)
             ?: throw UpdateException("invalid", "The downloaded file is not a valid app")
         if (archive.packageName != context.packageName) {
-            throw UpdateException("invalid", "The downloaded app is not DroidDesk")
+            throw UpdateException("invalid", "The downloaded app is not MT-desk")
         }
         val installed = pm.getPackageInfo(context.packageName, flags)
         if (fingerprints(archive).intersect(fingerprints(installed)).isEmpty()) {
