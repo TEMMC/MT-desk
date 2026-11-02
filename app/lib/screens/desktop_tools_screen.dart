@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:droiddesk/services/platform_bridge.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
-import 'package:droiddesk/widgets/droid_ui.dart';
+import 'package:mt_desk/services/platform_bridge.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
+import 'package:mt_desk/widgets/droid_ui.dart';
 
 class DesktopToolsScreen extends StatefulWidget {
   const DesktopToolsScreen({super.key});
