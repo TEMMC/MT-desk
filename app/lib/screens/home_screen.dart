@@ -53,14 +53,7 @@ class HomeScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(13),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(13),
-                          child: Image.asset(
-                            'assets/icons/logo.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                        child: const Icon(Icons.terminal_rounded, color: DroidTheme.primary, size: 30),
                       const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,8 +61,8 @@ class HomeScreen extends StatelessWidget {
                           Text('MT-desk', style: DroidTheme.headingMd),
                           Text(
                             state.isRunning
-                                ? 'Desktop Environment is running'
-                                : 'Desktop Environment',
+                                ? '● SESSION ACTIVE'
+                                : '> ROOT WORKSPACE',
                             style: DroidTheme.bodySm.copyWith(
                               color: state.isRunning
                                   ? DroidTheme.accent
@@ -309,7 +302,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        _infoRow('Workspace', 'Desktop Environment'),
+                        _infoRow('Workspace', '> ROOT WORKSPACE'),
                         _divider(),
                         _infoRow(
                           'Renderer',
