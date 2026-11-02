@@ -9,7 +9,7 @@ import android.util.Log
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
-/** Synchronizes plain text while DroidDesk's desktop activity is foreground. */
+/** Synchronizes plain text while MT-desk's desktop activity is foreground. */
 class ClipboardSync(
     context: Context,
     private val readLinux: () -> String?,
