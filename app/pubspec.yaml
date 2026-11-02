@@ -26,13 +26,13 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: false
-  image_path: "assets/icons/logo.png"
+  image_path: "assets/icons/mt_desk_logo.svg"
   remove_alpha_ios: true
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/icons/logo.png
+    - assets/icons/mt_desk_logo.svg
     - assets/bootstrap-aarch64.zip
     - assets/socket_hook.c
   fonts:
