@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
-import 'package:droiddesk/widgets/package_operation_card.dart';
-import 'package:droiddesk/widgets/update_sheet.dart';
-import 'package:droiddesk/screens/storage_screen.dart';
-import 'package:droiddesk/state/app_state.dart';
-import 'package:droiddesk/services/platform_bridge.dart';
-import 'package:droiddesk/screens/setup/de_install_screen.dart';
-import 'package:droiddesk/screens/apps/app_catalog_screen.dart';
-import 'package:droiddesk/screens/desktop_tools_screen.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
+import 'package:mt_desk/widgets/package_operation_card.dart';
+import 'package:mt_desk/widgets/update_sheet.dart';
+import 'package:mt_desk/screens/storage_screen.dart';
+import 'package:mt_desk/state/app_state.dart';
+import 'package:mt_desk/services/platform_bridge.dart';
+import 'package:mt_desk/screens/setup/de_install_screen.dart';
+import 'package:mt_desk/screens/apps/app_catalog_screen.dart';
+import 'package:mt_desk/screens/desktop_tools_screen.dart';
 
 /// Home dashboard — shown after setup is complete.
 /// Central hub for launching the desktop, terminal, and managing the environment.
