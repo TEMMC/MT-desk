@@ -11,6 +11,7 @@ import 'package:mt_desk/services/platform_bridge.dart';
 import 'package:mt_desk/screens/setup/de_install_screen.dart';
 import 'package:mt_desk/screens/apps/app_catalog_screen.dart';
 import 'package:mt_desk/screens/desktop_tools_screen.dart';
+import 'package:mt_desk/screens/desktop_appearance_screen.dart';
 import 'package:mt_desk/screens/welcome_screen.dart';
 
 /// Home dashboard — shown after setup is complete.
@@ -588,6 +589,20 @@ class HomeScreen extends StatelessWidget {
                         ),
                         onTap: () =>
                             state.setAutoStartDesktop(!state.autoStartDesktop),
+                      ),
+                      _SettingsRow(
+                        icon: Icons.tune_rounded,
+                        color: DroidTheme.primary,
+                        title: 'Display & Wallpapers',
+                        subtitle: 'Resolution, icon size and 5 hacker wallpapers',
+                        onTap: () {
+                          Navigator.pop(sheetContext);
+                          Navigator.of(pageContext).push(
+                            MaterialPageRoute(
+                              builder: (_) => const DesktopAppearanceScreen(),
+                            ),
+                          );
+                        },
                       ),
                       _SettingsRow(
                         icon: Icons.auto_awesome_rounded,
