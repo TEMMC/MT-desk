@@ -1,3 +1,3 @@
-# droiddesk
+# MT-desk
 
-DroidDesk - Full Linux Desktop on Android
+MT-desk - Full Linux Desktop on Android
