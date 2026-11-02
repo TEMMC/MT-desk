@@ -43,25 +43,69 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 const Spacer(flex: 2),
                 Container(
-                      width: 82,
-                      height: 82,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-                        boxShadow: [
-                          BoxShadow(
-                            color: DroidTheme.primary.withValues(alpha: 0.22),
-                            blurRadius: 36,
-                            offset: const Offset(0, 14),
-                          ),
-                        ],
+                  width: 82,
+                  height: 82,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(22),
+                    boxShadow: [
+                      BoxShadow(
+                        color: DroidTheme.primary.withValues(alpha: 0.22),
+                        blurRadius: 36,
+                        offset: const Offset(0, 14),
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(22),
-                        child: SvgPicture.asset(
-                          'assets/icons/mt_desk_logo.svg',
-                          fit: BoxFit.cover,
-                        ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(22),
+                    child: SvgPicture.asset(
+                      'assets/icons/mt_desk_logo.svg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+                    .animate()
+                    .fadeIn(duration: 450.ms)
+                    .scale(
+                      begin: const Offset(0.92, 0.92),
+                      curve: Curves.easeOutCubic,
+                    ),
+                const SizedBox(height: 34),
+                Text(
+                  'Your desktop.\\nNow on Android.',
+                  style: DroidTheme.headingXl,
+                )
+                    .animate()
+                    .fadeIn(delay: 100.ms, duration: 450.ms)
+                    .slideY(begin: 0.08, curve: Curves.easeOutCubic),
+                const SizedBox(height: 18),
+                Text(
+                  'A complete Desktop Environment that runs locally on your phone.',
+                  style: DroidTheme.bodyLg,
+                ).animate().fadeIn(delay: 180.ms, duration: 450.ms),
+                const SizedBox(height: 28),
+                _Feature(
+                  icon: Icons.lock_outline_rounded,
+                  text: 'Private and local',
+                ),
+                const SizedBox(height: 14),
+                _Feature(
+                  icon: Icons.bolt_rounded,
+                  text: 'Optimized for your GPU',
+                ),
+                const SizedBox(height: 14),
+                _Feature(
+                  icon: Icons.desktop_mac_outlined,
+                  text: 'Desktop Environment, ready to work',
+                ),
+                const Spacer(flex: 4),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const SetupProgressScreen(),
                       ),
+                    ),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
