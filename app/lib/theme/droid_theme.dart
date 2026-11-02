@@ -25,7 +25,7 @@ class DroidTheme {
   static const Color darkSurface = Color(0xFF07110B);
   static const Color darkSurfaceLight = Color(0xFF0D1B12);
   static const Color darkSurfaceBorder = Color(0xFF1B3B27);
-  static const Color darkCardBg = Color(0xFF1C1C1E);
+  static const Color darkCardBg = Color(0xFF0A160E);
 
   // ── Core Light Colors ──
   static const Color lightBackground = Color(0xFFF2F2F7);
@@ -44,7 +44,7 @@ class DroidTheme {
   // ── Accent Colors ──
   static const Color primary = Color(0xFF39FF14);
   static const Color primaryLight = Color(0xFF00E5FF);
-  static const Color secondary = Color(0xFF64D2FF);
+  static const Color secondary = Color(0xFF00E5FF);
   static const Color accent = Color(0xFF39FF14);
   static const Color warning = Color(0xFFFF9F0A);
   static const Color error = Color(0xFFFF453A);
@@ -70,14 +70,14 @@ class DroidTheme {
 
   // ── Gradients ──
   static const LinearGradient primaryGradient = LinearGradient(
-    colors: [Color(0xFF0A84FF), Color(0xFF168A32)],
+    colors: [Color(0xFF39FF14), Color(0xFF087A24)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
 
   static LinearGradient get backgroundGradient => isDark
       ? const LinearGradient(
-          colors: [Color(0xFF000000), Color(0xFF09090B)],
+          colors: [Color(0xFF020503), Color(0xFF07110B)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         )
@@ -89,7 +89,7 @@ class DroidTheme {
 
   static LinearGradient get cardGradient => isDark
       ? const LinearGradient(
-          colors: [Color(0xFF1C1C1E), Color(0xFF161618)],
+          colors: [Color(0xFF0D1B12), Color(0xFF07110B)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         )
