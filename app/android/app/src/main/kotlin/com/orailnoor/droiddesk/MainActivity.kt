@@ -1,4 +1,4 @@
-package com.orailnoor.droiddesk
+package com.mtdesk.desktop
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -11,15 +11,15 @@ import android.os.PowerManager
 import android.content.Context
 import android.net.Uri
 import android.provider.Settings
-import com.orailnoor.droiddesk.service.DroidDeskService
-import com.orailnoor.droiddesk.runtime.LinuxRuntime
-import com.orailnoor.droiddesk.runtime.ChrootRuntime
-import com.orailnoor.droiddesk.runtime.RootShell
-import com.orailnoor.droiddesk.runtime.AndroidAppBridge
-import com.orailnoor.droiddesk.runtime.AppUpdater
-import com.orailnoor.droiddesk.runtime.DesktopIntegration
-import com.orailnoor.droiddesk.view.AndroidSurfaceViewFactory
-import com.orailnoor.droiddesk.x11.X11ServerService
+import com.mtdesk.desktop.service.DroidDeskService
+import com.mtdesk.desktop.runtime.LinuxRuntime
+import com.mtdesk.desktop.runtime.ChrootRuntime
+import com.mtdesk.desktop.runtime.RootShell
+import com.mtdesk.desktop.runtime.AndroidAppBridge
+import com.mtdesk.desktop.runtime.AppUpdater
+import com.mtdesk.desktop.runtime.DesktopIntegration
+import com.mtdesk.desktop.view.AndroidSurfaceViewFactory
+import com.mtdesk.desktop.x11.X11ServerService
 import kotlin.concurrent.thread
 import android.util.Log
 import android.widget.Toast
@@ -30,7 +30,7 @@ class MainActivity : FlutterActivity() {
         private const val CHANNEL = "com.droiddesk/core"
         private const val TAG = "MainActivity"
         /** Sent by the "Open" notification action: show the desktop, resuming a running session. */
-        const val ACTION_OPEN_DESKTOP = "com.orailnoor.droiddesk.action.OPEN_DESKTOP"
+        const val ACTION_OPEN_DESKTOP = "com.mtdesk.desktop.action.OPEN_DESKTOP"
         private val packageOperationRunning = java.util.concurrent.atomic.AtomicBoolean(false)
     }
 
@@ -99,7 +99,7 @@ class MainActivity : FlutterActivity() {
         val autoStart = prefs.getBoolean("flutter.autoStartDesktop", false)
         if (autoStart && chrootRuntime.hasRoot() && chrootRuntime.isRootfsReady()) {
             startForegroundService()
-            val desktopIntent = Intent(this, com.orailnoor.droiddesk.view.DesktopActivity::class.java).apply {
+            val desktopIntent = Intent(this, com.mtdesk.desktop.view.DesktopActivity::class.java).apply {
                 putExtra("startSession", !chrootRuntime.isRunning())
                 putExtra("mode", "chroot")
                 putExtra("de", "xfce4")
@@ -159,10 +159,10 @@ class MainActivity : FlutterActivity() {
     private fun handleHomeLaunch(homeIntent: Intent) {
         val isHomeLaunch = homeIntent.action == Intent.ACTION_MAIN && homeIntent.hasCategory(Intent.CATEGORY_HOME)
         if (!isHomeLaunch && homeIntent.action != ACTION_OPEN_DESKTOP) return
-        if (homeIntent.action == ACTION_OPEN_DESKTOP && com.orailnoor.droiddesk.view.DesktopActivity.isOpen()) {
+        if (homeIntent.action == ACTION_OPEN_DESKTOP && com.mtdesk.desktop.view.DesktopActivity.isOpen()) {
             // Reuse the existing desktop screen; a second one would fight over the shared LorieView.
             startActivity(
-                Intent(this, com.orailnoor.droiddesk.view.DesktopActivity::class.java)
+                Intent(this, com.mtdesk.desktop.view.DesktopActivity::class.java)
                     .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT),
             )
             if (!isTaskRoot) finish()
@@ -185,7 +185,7 @@ class MainActivity : FlutterActivity() {
             startForegroundService()
             val sessionRunning = if (rooted) chrootRuntime.isRunning() else linuxRuntime.isRunning()
             runOnUiThread {
-                startActivity(Intent(this, com.orailnoor.droiddesk.view.DesktopActivity::class.java).apply {
+                startActivity(Intent(this, com.mtdesk.desktop.view.DesktopActivity::class.java).apply {
                     putExtra("startSession", !sessionRunning)
                     putExtra("mode", if (rooted) "chroot" else "termux")
                     putExtra("de", desktopEnv)
@@ -257,7 +257,7 @@ class MainActivity : FlutterActivity() {
 
                 Log.i(TAG, "Auto-setup: launching desktop...")
                 runOnUiThread {
-                    val intent = Intent(this@MainActivity, com.orailnoor.droiddesk.view.DesktopActivity::class.java).apply {
+                    val intent = Intent(this@MainActivity, com.mtdesk.desktop.view.DesktopActivity::class.java).apply {
                         putExtra("startSession", !chrootRuntime.isRunning())
                         putExtra("mode", "chroot")
                         putExtra("de", "xfce4")
@@ -652,7 +652,7 @@ class MainActivity : FlutterActivity() {
                         // so rooted devices rely on the Papirus fallback.
                         val prefix = java.io.File(filesDir, "usr").takeIf { it.isDirectory }
                         val icon = runCatching {
-                            com.orailnoor.droiddesk.runtime.LinuxAppIcons.find(
+                            com.mtdesk.desktop.runtime.LinuxAppIcons.find(
                                 this@MainActivity, prefix, packageName, iconNames,
                             )
                         }.getOrNull()
@@ -775,7 +775,7 @@ class MainActivity : FlutterActivity() {
                                 return@thread
                             }
                             runOnUiThread {
-                                val intent = Intent(this@MainActivity, com.orailnoor.droiddesk.view.DesktopActivity::class.java).apply {
+                                val intent = Intent(this@MainActivity, com.mtdesk.desktop.view.DesktopActivity::class.java).apply {
                                     putExtra("startSession", !chrootRuntime.isRunning())
                                     putExtra("mode", "chroot")
                                     putExtra("de", desktopEnv)
@@ -804,7 +804,7 @@ class MainActivity : FlutterActivity() {
                                 return@installThread
                             }
                             runOnUiThread {
-                                val intent = Intent(this@MainActivity, com.orailnoor.droiddesk.view.DesktopActivity::class.java).apply {
+                                val intent = Intent(this@MainActivity, com.mtdesk.desktop.view.DesktopActivity::class.java).apply {
                                     putExtra("startSession", !linuxRuntime.isRunning())
                                     putExtra("mode", "termux")
                                     putExtra("de", desktopEnv)
@@ -821,7 +821,7 @@ class MainActivity : FlutterActivity() {
                     // Flutter's "running" state can be stale (e.g. after Stop from the notification).
                     val running = if (rooted) chrootRuntime.isRunning() else linuxRuntime.isRunning()
                     if (!running) startForegroundService()
-                    val intent = Intent(this@MainActivity, com.orailnoor.droiddesk.view.DesktopActivity::class.java).apply {
+                    val intent = Intent(this@MainActivity, com.mtdesk.desktop.view.DesktopActivity::class.java).apply {
                         putExtra("startSession", !running)
                         putExtra("mode", if (rooted) "chroot" else "termux")
                         putExtra("de", if (rooted) "xfce4" else linuxRuntime.getInstalledDE())
@@ -832,7 +832,7 @@ class MainActivity : FlutterActivity() {
 
                 "stopLinux" -> {
                     // A desktop screen left in the back stack would reopen onto a dead session.
-                    com.orailnoor.droiddesk.view.DesktopActivity.finishIfOpen()
+                    com.mtdesk.desktop.view.DesktopActivity.finishIfOpen()
                     thread(name = "stop-linux-session") {
                         if (chrootRuntime.hasRoot() || chrootRuntime.isRunning()) {
                             chrootRuntime.stopSession()
@@ -980,7 +980,7 @@ class MainActivity : FlutterActivity() {
     private fun openDesktop(startSession: Boolean) {
         val rooted = chrootRuntime.hasRoot()
         startForegroundService()
-        startActivity(Intent(this, com.orailnoor.droiddesk.view.DesktopActivity::class.java).apply {
+        startActivity(Intent(this, com.mtdesk.desktop.view.DesktopActivity::class.java).apply {
             putExtra("startSession", startSession)
             putExtra("mode", if (rooted) "chroot" else "termux")
             putExtra("de", if (rooted) "xfce4" else linuxRuntime.getInstalledDE())
