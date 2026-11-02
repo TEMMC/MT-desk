@@ -4,7 +4,7 @@ import 'package:mt_desk/services/platform_bridge.dart';
 import 'package:mt_desk/services/update_service.dart';
 import 'package:mt_desk/theme/droid_theme.dart';
 
-/// Central state management for the entire DroidDesk app.
+/// Central state management for the entire MT-desk app.
 class AppState extends ChangeNotifier {
   // ── Theme State ──
   ThemeMode _themeMode = ThemeMode.dark;
