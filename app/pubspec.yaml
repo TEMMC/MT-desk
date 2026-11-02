@@ -33,6 +33,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/mt_desk_logo.svg
+    - assets/wallpapers/
     - assets/bootstrap-aarch64.zip
     - assets/socket_hook.c
   fonts:
