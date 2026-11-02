@@ -14,7 +14,7 @@ import kotlin.concurrent.thread
  * Manages Linux rootfs downloads, extraction, and lifecycle.
  *
  * Rootfs images are standard arm64 Linux distributions downloaded from
- * official or community mirrors. They are used only by DroidDesk's rooted
+ * official or community mirrors. They are used only by MT-desk's rooted
  * chroot path; non-root devices use the native Termux/TUR runtime instead.
  *
  * Download flow:
@@ -331,7 +331,7 @@ class RootfsManager(private val context: Context) {
             parentFile?.mkdirs()
             writeText("""
                 #!/bin/bash
-                # DroidDesk environment configuration
+                # MT-desk environment configuration
                 export DISPLAY=:0
                 export PULSE_SERVER=127.0.0.1
                 export MESA_NO_ERROR=1
