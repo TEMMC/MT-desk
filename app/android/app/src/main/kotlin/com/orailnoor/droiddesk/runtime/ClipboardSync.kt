@@ -1,4 +1,4 @@
-package com.orailnoor.droiddesk.runtime
+package com.mtdesk.desktop.runtime
 
 import android.content.ClipData
 import android.content.ClipboardManager
