@@ -122,7 +122,7 @@ setup_environment() {
     fi
     echo ""
 
-    # ── Hardcoded to XFCE4 (DroidDesk default) ──
+    # ── Hardcoded to XFCE4 (MT-desk default) ──
     DE_CHOICE="1"
     DE_NAME="XFCE4"
     echo -e "${GREEN}[+] Desktop: ${DE_NAME} (default)${NC}"
@@ -273,7 +273,7 @@ step_proot() {
     install_pkg "proot" "PRoot"
 
     echo ""
-    # ── Hardcoded to Ubuntu (DroidDesk default) ──
+    # ── Hardcoded to Ubuntu (MT-desk default) ──
     PROOT_DISTRO="ubuntu"
     PROOT_LABEL="Ubuntu 22.04"
     echo -e "${GREEN}[+] Proot distro: ${PROOT_LABEL} (default)${NC}"
@@ -1065,7 +1065,7 @@ COMPLETE
     echo ""
     echo -e "${YELLOW}  ★━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━★${NC}"
     echo -e "${WHITE}     If you found this helpful, please subscribe to:${NC}"
-    echo -e "${RED}           ▶  orailnoor  on YouTube  ◀${NC}"
+    echo -e "${RED}           ▶  MT-desk project  ◀${NC}"
     echo -e "${YELLOW}  ★━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━★${NC}"
     echo ""
 }
