@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<AppState>();
     final isDark = state.isDarkMode;
+    DroidDeskPlatform.registerOpenSettingsHandler(() => _showSettings(context));
 
     promptForUpdateIfAvailable(context, state);
 
