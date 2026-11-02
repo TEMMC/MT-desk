@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:droiddesk/services/platform_bridge.dart';
+import 'package:mt_desk/services/platform_bridge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
