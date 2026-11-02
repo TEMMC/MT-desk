@@ -27,9 +27,9 @@ class AppRelease {
 /// Checks GitHub Releases for a newer MT-desk build.
 class UpdateService {
   static const repo = 'TEMMC/MT-desk';
-  // Test builds can point at a local mock: --dart-define=DROIDDESK_UPDATE_URL=http://...
+  // Test builds can point at a local mock: --dart-define=MT_DESK_UPDATE_URL=http://...
   static const _latestUrl = String.fromEnvironment(
-    'DROIDDESK_UPDATE_URL',
+    'MT_DESK_UPDATE_URL',
     defaultValue: 'https://api.github.com/repos/$repo/releases/latest',
   );
   static const _lastCheckKey = 'update_last_check';
