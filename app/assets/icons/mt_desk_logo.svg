@@ -1,6 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102216"/><stop offset="1" stop-color="#030805"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<rect width="108" height="108" rx="20" fill="#030805"/><rect x="8" y="8" width="92" height="92" rx="15" fill="url(#g)" stroke="#39ff14" stroke-width="2.8" filter="url(#glow)"/>
-<path d="M18 27q0-8 8-8h54q8 0 8 8v12H18z" fill="#102216" stroke="#39ff14" stroke-width="1.4"/><path d="M20 39h68" stroke="#39ff14"/><path d="M72 24h5m3 0h4" stroke="#39ff14" stroke-width="2.5" stroke-linecap="round"/>
-<path d="M27 70V47h6l9 12 9-12h6v23h-6V56l-9 11-9-11v14z" fill="#f4fff2"/><path d="M60 47h23v6h-8v17h-7V53h-8z" fill="#39ff14"/><path d="M18 77q21 20 53 6" fill="none" stroke="#39ff14" stroke-width="2.2" stroke-linecap="round"/>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102216"/><stop offset="1" stop-color="#030805"/></linearGradient></defs>
+<rect width="108" height="108" rx="20" fill="#030805"/>
+<rect x="8" y="8" width="92" height="92" rx="15" fill="url(#bg)" stroke="#39ff14" stroke-width="2.8"/>
+<path d="M18 27q0-8 8-8h54q8 0 8 8v12H18z" fill="#102216" stroke="#39ff14" stroke-width="1.4"/>
+<path d="M20 39h68" stroke="#39ff14"/>
+<path d="M72 24h5m3 0h4" stroke="#39ff14" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M27 70V47h6l9 12 9-12h6v23h-6V56l-9 11-9-11v14z" fill="#f4fff2"/>
+<path d="M60 47h23v6h-8v17h-7V53h-8z" fill="#39ff14"/>
+<path d="M18 77q21 20 53 6" fill="none" stroke="#39ff14" stroke-width="2.2" stroke-linecap="round"/>
 </svg>
