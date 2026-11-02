@@ -65,7 +65,7 @@ class _UpdateSheetState extends State<UpdateSheet> with WidgetsBindingObserver {
 
   Future<void> _start() async {
     final state = context.read<AppState>();
-    if (!await MT-deskPlatform.canInstallUpdates()) {
+    if (!await DroidDeskPlatform.canInstallUpdates()) {
       if (mounted) setState(() => _step = _Step.permission);
       return;
     }
@@ -290,7 +290,7 @@ class _UpdateSheetState extends State<UpdateSheet> with WidgetsBindingObserver {
         ElevatedButton(
           onPressed: () async {
             _waitingForPermission = true;
-            await MT-deskPlatform.openInstallPermission();
+            await DroidDeskPlatform.openInstallPermission();
           },
           child: const Text('Continue'),
         ),
