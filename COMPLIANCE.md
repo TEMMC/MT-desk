@@ -1,16 +1,16 @@
 # Release compliance
 
 This document records the licensing work required for a distributable
-DroidDesk APK. It is not a substitute for advice from a qualified lawyer.
+MT-desk APK. It is not a substitute for advice from a qualified lawyer.
 
 ## Project license
 
-DroidDesk's original source code is offered under GPL-3.0-only. This choice is
+MT-desk's original source code is offered under GPL-3.0-only. This choice is
 intended to remain compatible with the Termux:X11 code incorporated into the
 same application. The full license is in [LICENSE](LICENSE).
 
 Source files that already carry an upstream license notice keep that notice and
-license. Nothing in the DroidDesk license replaces or removes third-party
+license. Nothing in the MT-desk license replaces or removes third-party
 copyrights.
 
 ## Current binary inventory
@@ -44,7 +44,7 @@ source record.
 - [ ] Identify the exact source and license for `libandroid-shmem.so` and
   `libtalloc.so`.
 - [ ] Rebuild the Termux bootstrap and packages for
-  `com.orailnoor.droiddesk` rather than relocating binaries built for
+  `com.mtdesk.desktop` rather than relocating binaries built for
   `com.termux`.
 - [ ] Publish a machine-readable bootstrap manifest containing package names,
   versions, architectures, source URLs, license identifiers, build revisions,
