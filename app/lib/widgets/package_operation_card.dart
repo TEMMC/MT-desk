@@ -1,6 +1,6 @@
-import 'package:droiddesk/state/app_state.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
-import 'package:droiddesk/widgets/linux_app_icon.dart';
+import 'package:mt_desk/state/app_state.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
+import 'package:mt_desk/widgets/linux_app_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
