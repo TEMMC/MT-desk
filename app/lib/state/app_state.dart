@@ -38,7 +38,7 @@ class AppState extends ChangeNotifier {
 
   // Terminal history
   final List<String> _terminalOutput = [
-    'DroidDesk Linux Terminal\nType commands below.\n',
+    'MT-desk // Linux Terminal\nType commands below.\n',
   ];
   List<String> get terminalOutput => _terminalOutput;
 
@@ -824,7 +824,7 @@ class AppState extends ChangeNotifier {
 
   void clearTerminal() {
     _terminalOutput.clear();
-    _terminalOutput.add('DroidDesk Linux Terminal\nType commands below.\n');
+    _terminalOutput.add('MT-desk // Linux Terminal\nType commands below.\n');
     notifyListeners();
   }
 
