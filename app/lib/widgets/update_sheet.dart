@@ -1,7 +1,7 @@
-import 'package:droiddesk/services/platform_bridge.dart';
-import 'package:droiddesk/services/update_service.dart';
-import 'package:droiddesk/state/app_state.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
+import 'package:mt_desk/services/platform_bridge.dart';
+import 'package:mt_desk/services/update_service.dart';
+import 'package:mt_desk/state/app_state.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
