@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 /// runs on the Kotlin side. Flutter calls into Kotlin via MethodChannel and
 /// receives callbacks.
 class DroidDeskPlatform {
-  static const _channel = MethodChannel('com.droiddesk/core');
+  static const _channel = MethodChannel('com.mtdesk.desktop/core');
 
   // Callback handlers (set by the UI layer)
   static Function(double progress, String status)? onDownloadProgress;
@@ -95,7 +95,7 @@ class DroidDeskPlatform {
     return await _channel.invokeMethod<bool>('canInstallUpdates') ?? false;
   }
 
-  /// Opens the "Install unknown apps" settings page for DroidDesk.
+  /// Opens the "Install unknown apps" settings page for MT-desk.
   static Future<void> openInstallPermission() async {
     await _channel.invokeMethod('openInstallPermission');
   }
