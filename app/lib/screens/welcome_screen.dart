@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mt_desk/theme/droid_theme.dart';
 import 'package:mt_desk/screens/setup/setup_progress.dart';
 import 'package:mt_desk/state/app_state.dart';
@@ -56,55 +57,11 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(22),
-                        child: Image.asset(
-                          'assets/icons/logo.png',
+                        child: SvgPicture.asset(
+                          'assets/icons/mt_desk_logo.svg',
                           fit: BoxFit.cover,
                         ),
                       ),
-                    )
-                    .animate()
-                    .fadeIn(duration: 450.ms)
-                    .scale(
-                      begin: const Offset(0.92, 0.92),
-                      curve: Curves.easeOutCubic,
-                    ),
-                const SizedBox(height: 34),
-                Text(
-                      'Your desktop.\nNow on Android.',
-                      style: DroidTheme.headingXl,
-                    )
-                    .animate()
-                    .fadeIn(delay: 100.ms, duration: 450.ms)
-                    .slideY(begin: 0.08, curve: Curves.easeOutCubic),
-                const SizedBox(height: 18),
-                Text(
-                  'A complete Desktop Environment that runs locally on your phone.',
-                  style: DroidTheme.bodyLg,
-                ).animate().fadeIn(delay: 180.ms, duration: 450.ms),
-                const SizedBox(height: 28),
-                _Feature(
-                  icon: Icons.lock_outline_rounded,
-                  text: 'Private and local',
-                ),
-                const SizedBox(height: 14),
-                _Feature(
-                  icon: Icons.bolt_rounded,
-                  text: 'Optimized for your GPU',
-                ),
-                const SizedBox(height: 14),
-                _Feature(
-                  icon: Icons.desktop_mac_outlined,
-                  text: 'Desktop Environment, ready to work',
-                ),
-                const Spacer(flex: 4),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const SetupProgressScreen(),
-                      ),
-                    ),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
