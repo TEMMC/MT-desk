@@ -96,10 +96,11 @@ class _DesktopAppearanceScreenState extends State<DesktopAppearanceScreen> {
     await prefs.setInt('desktopWallpaper', index);
     final data = await rootBundle.load(_wallpapers[index].$2);
     final encoded = base64Encode(data.buffer.asUint8List());
-    final path = '/tmp/mt-desk-wallpaper-${index + 1}.svg';
-    final command = "printf '%s' '$encoded' | base64 -d > '$path' && "
-        "xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image "
-        "--create -t string -s '$path' 2>&1";
+    final path = '\$HOME/Pictures/MT-desk/wallpaper-${index + 1}.svg';
+    final command = 'mkdir -p "\$HOME/Pictures/MT-desk" && '
+        "printf '%s' '$encoded' | base64 -d > \"$path\" && "
+        'xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image '
+        '--create -t string -s "\"$path\"" 2>&1';
     await _run(command, 'Wallpaper applied: ${_wallpapers[index].$1}');
   }
 
