@@ -22,9 +22,9 @@ class DroidTheme {
 
   // ── Core Dark Colors ──
   static const Color darkBackground = Color(0xFF000000);
-  static const Color darkSurface = Color(0xFF111113);
-  static const Color darkSurfaceLight = Color(0xFF1C1C1E);
-  static const Color darkSurfaceBorder = Color(0xFF2C2C2E);
+  static const Color darkSurface = Color(0xFF07110B);
+  static const Color darkSurfaceLight = Color(0xFF0D1B12);
+  static const Color darkSurfaceBorder = Color(0xFF1B3B27);
   static const Color darkCardBg = Color(0xFF1C1C1E);
 
   // ── Core Light Colors ──
@@ -42,10 +42,10 @@ class DroidTheme {
   static Color get cardBg => isDark ? darkCardBg : lightCardBg;
 
   // ── Accent Colors ──
-  static const Color primary = Color(0xFF0A84FF);
-  static const Color primaryLight = Color(0xFF64D2FF);
+  static const Color primary = Color(0xFF39FF14);
+  static const Color primaryLight = Color(0xFF00E5FF);
   static const Color secondary = Color(0xFF64D2FF);
-  static const Color accent = Color(0xFF30D158);
+  static const Color accent = Color(0xFF39FF14);
   static const Color warning = Color(0xFFFF9F0A);
   static const Color error = Color(0xFFFF453A);
   static const Color success = accent;
@@ -70,7 +70,7 @@ class DroidTheme {
 
   // ── Gradients ──
   static const LinearGradient primaryGradient = LinearGradient(
-    colors: [Color(0xFF0A84FF), Color(0xFF0071E3)],
+    colors: [Color(0xFF0A84FF), Color(0xFF168A32)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
@@ -116,7 +116,7 @@ class DroidTheme {
   static const double space2xl = 48;
 
   // ── Typography ──
-  static TextStyle get headingXl => GoogleFonts.inter(
+  static TextStyle get headingXl => GoogleFonts.jetBrainsMono(
     fontSize: 34,
     fontWeight: FontWeight.w700,
     color: textPrimary,
