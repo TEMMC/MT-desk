@@ -95,7 +95,8 @@ class MainActivity : FlutterActivity() {
     private fun maybeAutoStartDesktop(launchIntent: Intent) {
         // Home presses and the notification's Open action already launch the desktop.
         val isHomeLaunch = launchIntent.action == Intent.ACTION_MAIN && launchIntent.hasCategory(Intent.CATEGORY_HOME)
-        if (isHomeLaunch || launchIntent.action == ACTION_OPEN_DESKTOP) return
+        if (isHomeLaunch || launchIntent.action == ACTION_OPEN_DESKTOP ||
+            launchIntent.action == ACTION_OPEN_SETTINGS) return
         val prefs = getSharedPreferences("FlutterSharedPreferences", Context.MODE_PRIVATE)
         val autoStart = prefs.getBoolean("flutter.autoStartDesktop", false)
         if (autoStart && chrootRuntime.hasRoot() && chrootRuntime.isRootfsReady()) {
@@ -931,12 +932,11 @@ class MainActivity : FlutterActivity() {
                 else -> result.notImplemented()
             }
         }
-    }
         if (intent?.action == ACTION_OPEN_SETTINGS) {
             MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL)
                 .invokeMethod("openSettings", null)
         }
-
+    }
 
     private fun updateStatusBarIcons(isLightMode: Boolean) {
         lightSystemBars = isLightMode
