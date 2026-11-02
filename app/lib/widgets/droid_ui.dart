@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:droiddesk/theme/droid_theme.dart';
+import 'package:mt_desk/theme/droid_theme.dart';
 
 /// Shared building blocks for MT-desk's grouped-card screens.
 
