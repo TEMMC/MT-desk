@@ -768,8 +768,18 @@ class DesktopActivity : Activity() {
             desktopRevealed = true
             loadingMessageHandler.removeCallbacks(loadingMessageTicker)
             loadingMessageHandler.removeCallbacks(loadingEstimateTicker)
-            if (!ready) Log.w(TAG, "Revealing desktop after readiness timeout")
-            Log.i(TAG, "Desktop revealed ready=$ready")
+            if (!ready) {
+                Log.e(TAG, "Desktop did not become ready; keeping the recovery screen visible")
+                loadingStatus?.text = "Linux desktop did not start"
+                loadingEstimate?.text = "The desktop session or window manager failed to launch. Return to MT-desk and retry after checking the setup."
+                logoAnimator?.stop()
+                loadingOverlay?.alpha = 1f
+                loadingOverlay?.visibility = View.VISIBLE
+                loadingOverlay?.bringToFront()
+                loadingOverlay?.setOnClickListener { finish() }
+                return@runOnUiThread
+            }
+            Log.i(TAG, "Desktop revealed ready=true")
             loadingOverlay?.animate()
                 ?.alpha(0f)
                 ?.setDuration(350)
