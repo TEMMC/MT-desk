@@ -537,23 +537,19 @@ SESSEOF
             else -> listOf("xfce4-session", "xfwm4", "xfdesktop", "xfce4-panel")
         }
         val deadline = System.currentTimeMillis() + timeoutMs
+        val check = processes.joinToString(" && ") { "pgrep -x '$it' >/dev/null" } +
+            " && echo MT_DESKTOP_READY"
+        val command = "chroot ${rootfsDir.absolutePath} /bin/bash -c ${shellQuote(check)}"
         while (System.currentTimeMillis() < deadline) {
-            val check = processes.joinToString(" && ") { "pgrep -x '$it' >/dev/null" }
-            val output = runCatching {
-                rootShell.exec("chroot ${rootfsDir.absolutePath} /bin/bash -c ${shellQuote(check)}")
-            }.getOrDefault("")
-            if (!output.contains("not found", ignoreCase = true) &&
-                processes.all { process ->
-                    runCatching {
-                        rootShell.exec(
-                            "chroot ${rootfsDir.absolutePath} /usr/bin/pgrep -x ${shellQuote(process)}",
-                        ).trim().isNotEmpty()
-                    }.getOrDefault(false)
-                }) {
+            // One su/chroot round-trip per poll. The previous implementation
+            // spawned one root-shell process for every component on every
+            // 150 ms poll, adding substantial CPU and Binder overhead.
+            val output = runCatching { rootShell.exec(command) }.getOrDefault("")
+            if (output.contains("MT_DESKTOP_READY")) {
                 Thread.sleep(650)
                 return true
             }
-            Thread.sleep(150)
+            Thread.sleep(300)
         }
         Log.w(TAG, "Timed out waiting for chroot $desktopEnv to paint its first desktop frame")
         return false
