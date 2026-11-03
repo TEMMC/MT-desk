@@ -2160,10 +2160,10 @@ class LinuxRuntime(private val context: Context) {
     /** Wait until the desktop shell processes that paint the first frame exist. */
     fun waitForDesktopReady(desktopEnv: String = "xfce4", timeoutMs: Long = 45_000): Boolean {
         val processes = when (normalizedDesktop(desktopEnv)) {
-            "lxqt" -> listOf("lxqt-session", "lxqt-panel")
-            "mate" -> listOf("mate-session", "mate-panel")
-            "kde" -> listOf("plasmashell")
-            else -> listOf("xfdesktop", "xfce4-panel")
+            "lxqt" -> listOf("lxqt-session", "openbox", "lxqt-panel")
+            "mate" -> listOf("mate-session", "marco", "mate-panel")
+            "kde" -> listOf("plasmashell", "kwin_x11")
+            else -> listOf("xfce4-session", "xfwm4", "xfdesktop", "xfce4-panel")
         }
         val deadline = System.currentTimeMillis() + timeoutMs
         while (System.currentTimeMillis() < deadline) {
