@@ -104,6 +104,8 @@ class _AppCatalogScreenState extends State<AppCatalogScreen> {
   bool _loadingUpdates = false;
   bool _checkingUpdates = false;
   bool _updatesChecked = false;
+  bool _browseLoaded = false;
+  bool _installedLoaded = false;
 
   Set<String> get _installedNames =>
       _installedPackages.map((package) => package.name).toSet();
@@ -111,11 +113,9 @@ class _AppCatalogScreenState extends State<AppCatalogScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<AppState>().refreshOptionalApps();
-      _loadInstalled();
-      _search('');
-    });
+    // Keep the Featured tab immediate. Package database scans are deferred until
+    // Browse or Installed is actually opened, which avoids several apt/dpkg scans
+    // competing during the first frame on low-memory phones.
   }
 
   @override
@@ -127,6 +127,7 @@ class _AppCatalogScreenState extends State<AppCatalogScreen> {
   }
 
   Future<void> _loadInstalled() async {
+    if (_loadingInstalled && _installedLoaded) return;
     if (mounted) setState(() => _loadingInstalled = true);
     try {
       final packages = await DroidDeskPlatform.getInstalledNativePackages();
@@ -134,9 +135,10 @@ class _AppCatalogScreenState extends State<AppCatalogScreen> {
       setState(() {
         _installedPackages = packages.map(_PackageItem.fromMap).toList();
         _loadingInstalled = false;
+        _installedLoaded = true;
       });
     } catch (_) {
-      if (mounted) setState(() => _loadingInstalled = false);
+      if (mounted) setState(() { _loadingInstalled = false; _installedLoaded = true; });
     }
   }
 
@@ -149,9 +151,14 @@ class _AppCatalogScreenState extends State<AppCatalogScreen> {
   }
 
   Future<void> _search(String query) async {
+    final trimmed = query.trim();
+    if (trimmed.isEmpty) {
+      if (mounted) setState(() { _searchResults = const []; _searching = false; });
+      return;
+    }
     if (mounted) setState(() => _searching = true);
     try {
-      final packages = await DroidDeskPlatform.searchNativePackages(query);
+      final packages = await DroidDeskPlatform.searchNativePackages(trimmed);
       if (!mounted || query != _searchController.text.trim()) return;
       setState(() {
         _searchResults = packages.map(_PackageItem.fromMap).toList();
@@ -230,8 +237,12 @@ class _AppCatalogScreenState extends State<AppCatalogScreen> {
 
   void _selectTab(int index) {
     setState(() => _tab = index);
+    if (index == 1 && !_browseLoaded) {
+      _browseLoaded = true;
+      _search(_searchController.text);
+    }
     if (index == 2 && !_updatesChecked) _loadUpdates();
-    if (index == 3) _loadInstalled();
+    if (index == 3 && !_installedLoaded) _loadInstalled();
   }
 
   /// Shows the cached update list immediately, then refreshes package lists in the background.
@@ -467,6 +478,11 @@ class _AppCatalogScreenState extends State<AppCatalogScreen> {
               : ListView(
                   padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
                   children: [
+                    if (_searchController.text.trim().isEmpty)
+                      const Padding(
+                        padding: EdgeInsets.only(top: 28),
+                        child: Center(child: Text('Type an app or package name to search.')),
+                      ),
                     if (_searchResults.isNotEmpty)
                       DroidGroupCard(
                         child: Column(
