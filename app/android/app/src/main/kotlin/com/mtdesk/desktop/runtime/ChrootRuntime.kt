@@ -429,6 +429,13 @@ class ChrootRuntime(private val context: Context) {
             # Source MT-desk environment
             . /etc/profile.d/droiddesk-ha.sh 2>/dev/null || true
 
+            # Keep llvmpipe bounded on low-RAM Android devices. The rooted
+            # Ubuntu chroot cannot directly use the phone's vendor PowerVR
+            # driver, so unrestricted software rendering can starve Android.
+            export LP_NUM_THREADS=2
+            export OMP_NUM_THREADS=2
+            export MESA_GLTHREAD=false
+
             # Make sure X11 socket dir exists in case bind mount was late
             mkdir -p /tmp/.X11-unix
 
@@ -484,6 +491,7 @@ XRES
         xfconf-query -c xsettings -p /Net/IconThemeName -s Papirus -n -t string 2>/dev/null || true
         xfconf-query -c xsettings -p /Gtk/FontName -s 'Sans 12' -n -t string 2>/dev/null || true
         xfconf-query -c xsettings -p /Gtk/CursorThemeSize -s 32 -n -t int 2>/dev/null || true
+        xfconf-query -c xfwm4 -p /general/use_compositing -s false -n -t bool 2>/dev/null || true
     fi
     # Refresh xrandr again after XFCE panels have loaded
     xrandr --auto 2>/dev/null || true
@@ -523,10 +531,10 @@ SESSEOF
     /** Wait until the chroot desktop shell has created its visible components. */
     fun waitForDesktopReady(desktopEnv: String = "xfce4", timeoutMs: Long = 45_000): Boolean {
         val processes = when (desktopEnv) {
-            "lxqt" -> listOf("lxqt-session", "lxqt-panel")
-            "mate" -> listOf("mate-session", "mate-panel")
-            "kde" -> listOf("plasmashell")
-            else -> listOf("xfdesktop", "xfce4-panel")
+            "lxqt" -> listOf("lxqt-session", "openbox", "lxqt-panel")
+            "mate" -> listOf("mate-session", "marco", "mate-panel")
+            "kde" -> listOf("plasmashell", "kwin_x11")
+            else -> listOf("xfce4-session", "xfwm4", "xfdesktop", "xfce4-panel")
         }
         val deadline = System.currentTimeMillis() + timeoutMs
         while (System.currentTimeMillis() < deadline) {
